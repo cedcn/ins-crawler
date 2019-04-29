@@ -4,11 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "crawler": "^1.2.1"
+    "apollo-server-express": "^2.4.8",
+    "crawler": "^1.2.1",
+    "express": "^4.16.4",
+    "graphql": "^14.2.1",
+    "sequelize": "^5.8.0",
+    "sequelize-cli": "^5.4.0",
+    "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.4",
+    "nodemon": "^1.18.11"
   }
 }
