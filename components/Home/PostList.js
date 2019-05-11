@@ -1,8 +1,9 @@
 import { Query } from 'react-apollo'
+import { Spin, Row, Col } from 'antd'
 import gql from 'graphql-tag'
 import ErrorMessage from './ErrorMessage'
 
-export const allPostsQuery = gql`
+const allPostsQuery = gql`
   query AllPosts($username: String!) {
     posts(username: $username) {
       id
@@ -10,30 +11,46 @@ export const allPostsQuery = gql`
     }
   }
 `
-export const allPostsQueryVars = {
-  username: 'gosmoothorgohome',
-}
 
-export default function PostList() {
+const PostList = ({ username }) => {
+  const allPostsQueryVars = {
+    username,
+  }
+
   return (
-    <Query query={allPostsQuery} variables={allPostsQueryVars} ssr={false}>
-      {({ loading, error, data, fetchMore }) => {
-        if (error) return <ErrorMessage message="Error loading posts." />
-        if (loading) return <div>Loading</div>
-        return (
-          <section>
-            <ul>
-              {data.posts.map((post, index) => {
-                return (
-                  <li key={index}>
-                    <img src={post.display_url} />
-                  </li>
-                )
-              })}
-            </ul>
-          </section>
-        )
-      }}
-    </Query>
+    <div>
+      <style jsx>{`
+        img {
+          width: 100%;
+          margin-bottom: 21px;
+        }
+
+        div :global(.ant-spin-container) {
+          min-height: 100vh;
+        }
+      `}</style>
+      <Query query={allPostsQuery} variables={allPostsQueryVars} ssr={false}>
+        {({ loading, error, data, fetchMore }) => {
+          if (error) return <ErrorMessage message="Error loading posts." />
+          return (
+            <Spin spinning={loading}>
+              <Row gutter={21} type="flex">
+                {data &&
+                  data.posts &&
+                  data.posts.map((post, index) => {
+                    return (
+                      <Col span={6} key={index}>
+                        <img src={post.display_url} />
+                      </Col>
+                    )
+                  })}
+              </Row>
+            </Spin>
+          )
+        }}
+      </Query>
+    </div>
   )
 }
+
+export default PostList

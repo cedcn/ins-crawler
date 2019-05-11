@@ -11,13 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "antd": "^3.17.0",
     "apollo-boost": "^0.3.1",
     "apollo-server-express": "^2.4.8",
     "axios": "^0.18.0",
-    "cheerio": "^1.0.0-rc.3",
-    "crawler": "^1.2.1",
     "express": "^4.16.4",
-    "got": "^9.6.0",
     "graphql": "^14.2.1",
     "isomorphic-unfetch": "^3.0.0",
     "morgan": "^1.9.1",
@@ -31,8 +30,7 @@
     "sequelize": "^5.8.0",
     "sequelize-cli": "^5.4.0",
     "sqlite3": "^4.0.6",
-    "swagger-ui-express": "^4.0.2",
-    "tunnel": "^0.0.6"
+    "swagger-ui-express": "^4.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -40,6 +38,9 @@
     "@babel/node": "^7.2.2",
     "@babel/plugin-proposal-decorators": "^7.4.0",
     "babel-plugin-import": "^1.11.0",
+    "css-loader": "^2.1.1",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
     "nodemon": "^1.18.11"
   }
 }

@@ -19,7 +19,7 @@ const Head = (props) => {
         name="viewport"
         content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover"
       />
-      <meta name="keywords" content="表单模板,问卷模板,活动报名模板,投票模板,预约模板,订单模板,考试模板,金数据" />
+      <meta name="keywords" content="" />
       <link id="favicon" rel="icon" href="/static/favicon.ico" />
       <meta property="og:url" content={props.url || defaultOGURL} />
       <meta property="og:title" content={title} />
