@@ -1,5 +1,37 @@
 {
   "presets": [
-    "@babel/preset-env"
-  ]
+    [
+      "next/babel",
+      {
+        "preset-env": {
+          "useBuiltIns": "usage",
+          "targets": {
+            "browsers": [
+              ">0.2%",
+              "not dead",
+              "not ie <= 10",
+              "not op_mini all"
+            ]
+          }
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "lib"
+      },
+      "ant"
+    ],
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ]
+  ],
+  "ignore": []
 }

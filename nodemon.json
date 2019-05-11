@@ -1,8 +1,5 @@
 {
   "watch": [
-    "collects/*/**",
-    "models/*/**",
-    "api/*/**",
-    "index.js"
+    "server/**/*.js"
   ]
 }
