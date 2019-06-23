@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js --exec babel-node",
-    "fetch": "babel-node --inspect xx.js",
+    "inspect": "babel-node --inspect server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -16,6 +16,7 @@
     "apollo-boost": "^0.3.1",
     "apollo-server-express": "^2.4.8",
     "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.3",
     "express": "^4.16.4",
     "graphql": "^14.2.1",
     "isomorphic-unfetch": "^3.0.0",

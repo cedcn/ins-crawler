@@ -26,6 +26,7 @@ export default class extends PureComponent {
             onSearch={(value) => this.toSearchPosts(value)}
           />
           <p>gosmoothorgohome</p>
+          <p>rkrkrk</p>
         </div>
       </ApplicationLayout>
     )

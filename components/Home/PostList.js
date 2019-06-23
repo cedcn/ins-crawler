@@ -29,7 +29,7 @@ const PostList = ({ username }) => {
           min-height: 100vh;
         }
       `}</style>
-      <Query query={allPostsQuery} variables={allPostsQueryVars} ssr={false}>
+      <Query query={allPostsQuery} variables={allPostsQueryVars} ssr>
         {({ loading, error, data, fetchMore }) => {
           if (error) return <ErrorMessage message="Error loading posts." />
           return (

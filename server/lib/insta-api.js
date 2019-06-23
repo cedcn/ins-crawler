@@ -1,5 +1,6 @@
 import request from 'request'
 import _ from 'lodash'
+const cheerio = require('cheerio')
 
 export const fetchUserPosts = (username) => {
   return new Promise((resolve, reject) => {
@@ -26,13 +27,44 @@ export const fetchUserPosts = (username) => {
         }
 
         if (response && response.statusCode === 200) {
-          const dataStr = JSON.stringify(body)
-          const datarep = dataStr.replace(/(\r\n)|(\n)/g, '')
-          const n = datarep.match(/(window._sharedData\s?)(=\s?)(.*?);<\/script>/)[3]
-          const userData = JSON.parse(n.replace(/\\/g, ''))
-          const da = userData['entry_data']['ProfilePage'][0].graphql.user.edge_owner_to_timeline_media.edges
-          const resData = _.map(da, (item) => ({ display_url: item.node.display_url, id: item.node.id }))
-          resolve(resData)
+          try {
+            let $ = cheerio.load(body)
+
+            let datas = '',
+              jsFilesUrl = ''
+
+            //这里需要先获取shareData中的一些信息备用
+            $('script').each(function(indexInArray, valueOfElement) {
+              let htmlStr = $('script')
+                .eq(indexInArray)
+                .html()
+              if (htmlStr.indexOf('window._sharedData') == 0) {
+                datas = $('script')
+                  .eq(indexInArray)
+                  .html()
+                datas = datas.substring(20).replace(/\;/g, '')
+              }
+              // let src = $('script')
+              //   .eq(indexInArray)
+              //   .prop('src')
+              // if (src && src.indexOf('ProfilePageContainer')) {
+              //   jsFiles = 'https://www.instagram.com' + src
+              // }
+            })
+
+            // let userData = $('body > script:nth-child(2)').html()
+
+            // userData = userData.substring(0, userData.length - 1).replace('window._sharedData = ', '')
+            let jsonData = JSON.parse(datas)
+
+            const da = jsonData['entry_data']['ProfilePage'][0].graphql.user.edge_owner_to_timeline_media.edges
+            const resData = _.map(da, (item) => ({ display_url: item.node.display_url, id: item.node.id }))
+            console.log(resData)
+
+            resolve(resData)
+          } catch (error) {
+            reject(error)
+          }
         }
       }
     )
